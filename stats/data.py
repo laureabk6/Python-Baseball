@@ -26,6 +26,6 @@ games = games.fillna(' ')#fill Nan values
 #
 # #reduce memory used by games, provide Pandas with clue to what data is contained in certain columns
 # #select all rows, and just the 'type' column with loc function
-# games.loc[:,'type'] = pd.Categorical(games.loc[:,'type'])
+games.loc[:,'type'] = pd.Categorical(games.loc[:,'type'])
 #
 # print(games.head()) #print first 5 rows
