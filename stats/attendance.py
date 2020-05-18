@@ -12,3 +12,6 @@ from data import games #from file data.py import games dataframe
 attendance = games.loc[(games['type'] == 'info') & (games['multi2']=='attendance'),['year','multi3']]
 #change column labels
 attendance.columns = ['year','attendance']
+
+#select all rows, but just the attendance column
+attendance.loc[:,'attendance'] = pd.to_numeric(attendance.loc[:,'attendance'])
