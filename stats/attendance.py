@@ -14,4 +14,8 @@ attendance = games.loc[(games['type'] == 'info') & (games['multi2']=='attendance
 attendance.columns = ['year','attendance']
 
 #select all rows, but just the attendance column
+#converts the attendance values from string to numerical values
 attendance.loc[:,'attendance'] = pd.to_numeric(attendance.loc[:,'attendance'])
+
+attendance.plot(x='year',y='attendance',figsize=(15,7),kind='bar')
+plt.show()
