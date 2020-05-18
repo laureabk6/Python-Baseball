@@ -16,3 +16,20 @@ plays.columns = ['type','inning','team','player','count','pitches',
 #keep only a few specified columns
 pa = plays.loc[plays['player'].shift() != plays['player'] ,
                ['year','game_id','inning','team','player']]
+
+#on groupby() chain, a call to size() to count this appearance
+    #reset_index() passing in the right keyword argument to name the newly created column
+pa = pa.groupby(['year','game_id','team']).size().reset_index(name='PA')
+
+#reshape the data by the type of event
+#adjust the index -> set_index()
+#the event types need to be the columns of our dataframe -> unstack()
+events = events.set_index(['year','game_id','team','event_type'])
+events = events.unstack().fillna(0).reset_index()
+#after unstacking, it will have multiple levels of column labels
+    #use droplevel() to remove one level
+events.columns = events.columns.droplevel()
+#change the column labels
+events.columns = ['year','game_id','team','BB','E','H','HBP','HR','ROE','SO']
+#remove label of the index using rename_axis(): pass in label of None, on the column axis
+events = events.rename_axis(None,axis='columns')
