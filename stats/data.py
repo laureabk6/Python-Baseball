@@ -28,4 +28,4 @@ games = games.fillna(' ')#fill Nan values
 # #select all rows, and just the 'type' column with loc function
 games.loc[:,'type'] = pd.Categorical(games.loc[:,'type'])
 #
-# print(games.head()) #print first 5 rows
+print(games.head()) #print first 5 rows
