@@ -21,3 +21,10 @@ replacements = {r'^S(.*)' : 'single' ,
                 r'^D(.*)' : 'double' ,
                 r'^T(.*)' : 'triple' ,
                 r'^HR(.*)' : 'hr' }
+hit_type = hits['event'].replace(replacements,regex=True)
+#add a new column with assign() with new column name and new column
+hits = hits.assign(hit_type=hit_type)
+#group by inning and hit type
+#call size() to count the number of hits per inning
+#reset the index of the resulting dataframe, name newly created column 'count'
+hits = hits.groupby(['inning','hit_type']).size().reset_index(name='count')
