@@ -11,3 +11,13 @@ plays.columns= ['type','inning','team','player','count','pitches','event','game_
     #S (not SB); D; T; HR
 #only return 'inning' and 'event' columns
 hits = plays.loc[plays['event'].str.contains('^(?:S(?!B)|D|T|HR)'),['inning','event']]
+#convert 'inning' column from strings to numbers
+hits.loc[:,'inning'] = pd.to_numeric(hits.loc[:,'inning']) #all rows, 'inning' column only
+#'event' column contains data: where the ball was hit,
+    #and info not needed -> need to replace this with the type of hit
+
+#create a dictionary called replacements
+replacements = {r'^S(.*)' : 'single' ,
+                r'^D(.*)' : 'double' ,
+                r'^T(.*)' : 'triple' ,
+                r'^HR(.*)' : 'hr' }
