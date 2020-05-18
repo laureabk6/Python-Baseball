@@ -15,3 +15,8 @@ strike_outs = strike_outs.groupby(['year','game_id']).size()
 #strike_outs is now a groupby object. also contains a new column with number of strike outs in the game
 #convert groupby object to a dataframe + name the column that was created
 strike_outs = strike_outs.reset_index(name='strike_outs')
+#converts the 2 selected columns values to numeric
+strike_outs = strike_outs.loc[:,['year','strike_outs']].apply(pd.to_numeric)
+
+strike_outs.plot(x='year',y='strike_outs',kind='scatter').legend(['Strike Outs'])
+plt.show()
