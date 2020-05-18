@@ -12,3 +12,6 @@ plays = games[games['type'] == 'play']
 strike_outs = plays[plays['event'].str.contains('K')]
 #group the strike_outs dataframe by year and then by game_id
 strike_outs = strike_outs.groupby(['year','game_id']).size()
+#strike_outs is now a groupby object. also contains a new column with number of strike outs in the game
+#convert groupby object to a dataframe + name the column that was created
+strike_outs = strike_outs.reset_index(name='strike_outs')
