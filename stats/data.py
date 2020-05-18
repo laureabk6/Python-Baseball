@@ -17,8 +17,8 @@ games.loc[games['multi5'] == '??' , ['multi5']] = ''
 
 identifiers = games["multi2"].str.extract(r'(.LS(\d{4})\d{5})') #is a dataframe
 #has 2 columns. for rows that match the regex, the row has the correct extracted values
-# identifiers = identifiers.fillna(method='ffill')#values must be filled in for all rows
-#
+identifiers = identifiers.fillna(method='ffill')#values must be filled in for all rows
+
 # identifiers.columns=["game_id","year"])#change column labels
 # games = pd.concat([games,identifiers],axis=1,sort=False)#concatenate identifier columns:
 # #append the columns of identifiers to games
