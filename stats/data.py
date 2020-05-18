@@ -14,18 +14,18 @@ for game_file in game_files:
 
 games = pd.concat(game_frames) #large dataframe called games
 games.loc[games['multi5'] == '??' , ['multi5']] = ''
-
-identifiers = games["multi2"].str.extract(r'(.LS(\d{4})\d{5})') #is a dataframe
-#has 2 columns. for rows that match the regex, the row has the correct extracted values
-identifiers = identifiers.fillna(method='ffill')#values must be filled in for all rows
-
-identifiers.columns=["game_id","year"])#change column labels
-games = pd.concat([games,identifiers],axis=1,sort=False)#concatenate identifier columns:
-#append the columns of identifiers to games
-games = games.fillna(' ')#fill Nan values
-
-#reduce memory used by games, provide Pandas with clue to what data is contained in certain columns
-#select all rows, and just the 'type' column with loc function
-games.loc[:,'type'] = pd.Categorical(games.loc[:,'type'])
-
-print(games.head()) #print first 5 rows
+# 
+# identifiers = games["multi2"].str.extract(r'(.LS(\d{4})\d{5})') #is a dataframe
+# #has 2 columns. for rows that match the regex, the row has the correct extracted values
+# identifiers = identifiers.fillna(method='ffill')#values must be filled in for all rows
+#
+# identifiers.columns=["game_id","year"])#change column labels
+# games = pd.concat([games,identifiers],axis=1,sort=False)#concatenate identifier columns:
+# #append the columns of identifiers to games
+# games = games.fillna(' ')#fill Nan values
+#
+# #reduce memory used by games, provide Pandas with clue to what data is contained in certain columns
+# #select all rows, and just the 'type' column with loc function
+# games.loc[:,'type'] = pd.Categorical(games.loc[:,'type'])
+#
+# print(games.head()) #print first 5 rows
