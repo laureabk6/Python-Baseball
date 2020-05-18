@@ -22,7 +22,7 @@ identifiers = identifiers.fillna(method='ffill')#values must be filled in for al
 identifiers.columns=["game_id","year"]#change column labels
 games = pd.concat([games,identifiers],axis=1,sort=False)#concatenate identifier columns:
 # #append the columns of identifiers to games
-# games = games.fillna(' ')#fill Nan values
+games = games.fillna(' ')#fill Nan values
 #
 # #reduce memory used by games, provide Pandas with clue to what data is contained in certain columns
 # #select all rows, and just the 'type' column with loc function
