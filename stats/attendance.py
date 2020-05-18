@@ -3,4 +3,4 @@
 
 import pandas as pd
 import matplotlib.pyplot as plt
-import games from data 
+from data import games #from file data.py import games dataframe
