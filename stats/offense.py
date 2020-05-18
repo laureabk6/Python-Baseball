@@ -28,3 +28,9 @@ hits = hits.assign(hit_type=hit_type)
 #call size() to count the number of hits per inning
 #reset the index of the resulting dataframe, name newly created column 'count'
 hits = hits.groupby(['inning','hit_type']).size().reset_index(name='count')
+
+#there are only 4 types of hits, save some memory
+    #by converting column 'hit_type' to a categorical column
+hits['hit_type'] = pd.Categorical(hits['hit_type'] , ['single','double','triple','hr'])
+#sort values by 'inning' and 'hit_type'
+hits = hits.sort_values(['inning','hit_type']) 
